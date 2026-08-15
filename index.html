@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <title>ပန်းပွင့်လေး ဖူးပွင့်လာပြီ</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff; /* နောက်ခံအရောင် */
+            margin: 0;
+        }
+
+        .flower-container {
+            position: relative;
+            width: 100px;
+            height: 200px;
+        }
+
+        /* ပန်းပင်တိုင် */
+        .stem {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 0; /* စစချင်း အတိုလေး */
+            background-color: #2e8b57; /* အစိမ်းရောင် */
+            border-radius: 3px;
+            animation: growStem 2s ease-out forwards; /* ပင်တိုင် ကြီးထွားသည့် အန်နီမေးရှင်း */
+        }
+
+        /* ပန်းဖတ်များအတွက် ဘုံစတိုင် */
+        .petal {
+            position: absolute;
+            bottom: 180px; /* ပင်တိုင်ထိပ် */
+            left: 50%;
+            transform-origin: bottom center; /* အောက်ခြေမှ ပြန့်ကားမည် */
+            width: 30px;
+            height: 60px;
+            background-color: #ff69b4; /* ပန်းရောင် */
+            border-radius: 50% 50% 20% 20%;
+            opacity: 0; /* စစချင်း မမြင်ရ */
+            animation: bloomPetals 1s ease-out 2s forwards; /* ၂ စက္ကန့်ကြာမှ ပွင့်လာမည် */
+        }
+
+        /* ပန်းဖတ်တစ်ခုချင်းစီ၏ တည်နေရာ */
+        .petal-1 { transform: translateX(-50%) rotate(-45deg); }
+        .petal-2 { transform: translateX(-50%) rotate(45deg); }
+        .petal-3 { transform: translateX(-50%) rotate(-90deg); }
+        .petal-4 { transform: translateX(-50%) rotate(90deg); }
+        .petal-5 { transform: translateX(-50%) rotate(0deg); }
+
+        /* ပန်း၏ အလယ်ဗဟို အဝါစက် */
+        .center {
+            position: absolute;
+            bottom: 190px;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 20px;
+            height: 20px;
+            background-color: #ffd700; /* အဝါရောင် */
+            border-radius: 50%;
+            z-index: 10;
+            animation: appearCenter 0.5s ease-out 3s forwards; /* နောက်ဆုံးမှ ပေါ်လာမည် */
+        }
+
+        /* --- အန်နီမေးရှင်းများ --- */
+
+        /* ပင်တိုင်ကြီးထွားခြင်း */
+        @keyframes growStem {
+            to { height: 190px; }
+        }
+
+        /* ပန်းဖတ်များ ပွင့်ကားခြင်း */
+        @keyframes bloomPetals {
+            to {
+                opacity: 1;
+                bottom: 200px;
+                transform: translateX(-50%) rotate(var(--final-rotate, 0deg)); /* လှည့်ပတ်ထွက်ပေါ်လာခြင်း */
+            }
+        }
+
+        /* အဝါရောင်အလယ်ဗဟို ပေါ်လာခြင်း */
+        @keyframes appearCenter {
+            to { transform: translateX(-50%) scale(1); }
+        }
+
+        /* ပန်းဖတ်တစ်ခုချင်းစီအတွက် ထောင့်အတိအကျ သတ်မှတ်ပေးခြင်း (CSS Variables သုံး၍) */
+        .petal-1 { --final-rotate: -45deg; }
+        .petal-2 { --final-rotate: 45deg; }
+        .petal-3 { --final-rotate: -135deg; }
+        .petal-4 { --final-rotate: 135deg; }
+        .petal-5 { --final-rotate: 0deg; }
+
+    </style>
+</head>
+<body>
+
+    <div class="flower-container">
+        <div class="stem"></div>
+        <div class="center"></div>
+        <div class="petal petal-1"></div>
+        <div class="petal petal-2"></div>
+        <div class="petal petal-3"></div>
+        <div class="petal petal-4"></div>
+        <div class="petal petal-5"></div>
+    </div>
+
+</body>
+</html>
