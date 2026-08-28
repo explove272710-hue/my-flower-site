@@ -9,7 +9,6 @@
 </head>
 <body>
 
-    <!-- ၁။ Loading Screen (MLBB ပုံစံ) -->
     <div id="loader-screen">
         <div class="animated-logo">MLBB</div>
         <div class="loading-container">
@@ -18,7 +17,6 @@
         <div class="loading-text" id="load-text">LOADING 0%</div>
     </div>
 
-    <!-- ၂။ Login Screen (နာမည်နဲ့ Password ထည့်ရန်) -->
     <div id="login-screen">
         <h2>LOGIN</h2>
         <div class="input-group">
@@ -33,14 +31,12 @@
         <div class="error-msg" id="error"></div>
     </div>
 
-    <!-- ၃။ နောက်ဆုံး စာမျက်နှာအသစ် (Welcome Page) -->
     <div id="welcome-screen">
         <h1 id="welcome-title">Welcome!</h1>
-        <p>အောင်မြင်စွာ ဝင်ရောက်နိုင်셨ပါပြီ။</p>
+        <p>အောင်မြင်စွာ ဝင်ရောက်နိုင်ပါပြီ။</p>
     </div>
 
     <script>
-        // Loading Animation လုပ်ဆောင်ချက်
         let width = 0;
         const bar = document.getElementById('bar');
         const loadText = document.getElementById('load-text');
@@ -50,7 +46,6 @@
         let interval = setInterval(() => {
             if (width >= 100) {
                 clearInterval(interval);
-                // 100% ပြည့်ရင် Loading ပျောက်ပြီး Login Box ပေါ်လာမယ်
                 loaderScreen.style.opacity = '0';
                 setTimeout(() => {
                     loaderScreen.style.display = 'none';
@@ -61,22 +56,20 @@
                 bar.style.width = width + '%';
                 loadText.innerText = 'LOADING ' + width + '%';
             }
-        }, 30); // နှုန်းမြန်ချင်ရင် ဒီက ဂဏန်းကို လျှော့လို့ရပါတယ်
+        }, 30);
 
-        // Login စစ်ဆေးရန် (ကိုကြိုက်တဲ့ နာမည်နဲ့ password ထည့်လို့ရပါတယ်)
         function checkLogin() {
             let userInput = document.getElementById('username').value;
             let passInput = document.getElementById('password').value;
             let errorMsg = document.getElementById('error');
 
-            // ဥပမာ - နာမည် admin နဲ့ password 123 လို့ သတ်မှတ်ထားပါတယ်
             if (userInput === "admin" && passInput === "123") {
                 document.getElementById('login-screen').style.display = 'none';
                 let welcomeScreen = document.getElementById('welcome-screen');
                 welcomeScreen.style.display = 'block';
                 document.getElementById('welcome-title').innerText = "Welcome, " + userInput + "!";
             } else {
-                errorMsg.innerText = "နာမည် (သို့) Password မှားနေ습니다! (admin / 123 ကိုသုံးပါ)";
+                errorMsg.innerText = "နာမည် (သို့) Password မှားနေပါသည်! (admin / 123 ကိုသုံးပါ)";
             }
         }
     </script>
